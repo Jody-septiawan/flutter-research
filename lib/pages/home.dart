@@ -1,4 +1,4 @@
-import 'package:dumbcation/pages/for_navigation/second.dart';
+import 'package:dumbcation/pages/second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';

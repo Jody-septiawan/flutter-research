@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
-import 'pages/statefull_widget.dart';
-import 'pages/container_animated.dart';
-import 'pages/flexibel.dart';
-import 'pages/for_navigation/login.dart';
+import 'pages/login.dart';
 
 void main() => runApp(MyApp());
 

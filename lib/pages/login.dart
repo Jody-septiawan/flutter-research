@@ -1,4 +1,4 @@
-import 'package:dumbcation/pages/for_navigation/home.dart';
+import 'package:dumbcation/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
