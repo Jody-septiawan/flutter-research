@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ColorProvider with ChangeNotifier {
-  bool _isLigthBlue = false;
+  bool _isLigthBlue = true;
 
   bool get isLightBlue => _isLigthBlue;
 
@@ -11,5 +11,5 @@ class ColorProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Color get color => (_isLigthBlue) ? Colors.yellow : Colors.green;
+  Color get color => (_isLigthBlue) ? Colors.red : Colors.yellow;
 }

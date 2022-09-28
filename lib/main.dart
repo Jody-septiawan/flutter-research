@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.all(5),
-                          child: Text("AB"),
+                          child: Text("Yellow"),
                         ),
                         Consumer<ColorProvider>(
                           builder: (context, value, child) => Switch(
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.all(5),
-                          child: Text("LB"),
+                          child: Text("Red"),
                         ),
                       ],
                     )
