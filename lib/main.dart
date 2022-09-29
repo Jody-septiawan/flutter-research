@@ -9,52 +9,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins'),
-      home: ChangeNotifierProvider<ColorProvider>(
-        create: (context) => ColorProvider(),
-        child: Scaffold(
-            appBar: AppBar(
-                title: Consumer<ColorProvider>(
-                    builder: (context, value, _) => Text(
-                          "Color Provider State management",
-                          style: TextStyle(color: value.color),
-                        ))),
-            body: Center(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'Poppins'),
+        home: Scaffold(
+          body: Center(
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Consumer<ColorProvider>(
-                      builder: (context, value, _) => AnimatedContainer(
-                          width: 100,
-                          height: 100,
-                          color: value.color,
-                          duration: Duration(milliseconds: 500)),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(5),
-                          child: Text("Yellow"),
-                        ),
-                        Consumer<ColorProvider>(
-                          builder: (context, value, child) => Switch(
-                            value: value.isLightBlue,
-                            onChanged: (newValue) {
-                              value.isLightBlue = newValue;
-                            },
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(5),
-                          child: Text("Red"),
-                        ),
-                      ],
-                    )
-                  ]),
-            )),
-      ),
-    );
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Test"),
+              Container(
+                child: Align(alignment: Alignment.centerRight),
+                height: 30,
+                width: 150,
+                margin: EdgeInsets.all(5),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.purple[100],
+                  border: Border.all(color: Colors.purple, width: 2),
+                ),
+              )
+            ],
+          )),
+        ));
   }
 }
