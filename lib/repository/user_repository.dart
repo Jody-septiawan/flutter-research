@@ -36,4 +36,19 @@ class UserRepository {
       print(e.toString());
     }
   }
+
+  Future putData(String id, String name, String email, String password) async {
+    try {
+      final response = await http.put(Uri.parse(_baseUrl + '/User' + id),
+          body: {"name": name, "email": email, "password": password});
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
