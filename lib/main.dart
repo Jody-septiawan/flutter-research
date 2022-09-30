@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
 import 'repository/user_repository.dart';
 import 'models/user.dart';
+import 'screens/add_user.dart';
+
+var imgUrl =
+    "https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Research Test App',
+      routes: {
+        '/home': (context) => HomePage(),
+        '/add-user': (context) => AddUserPage(),
+      },
+      home: HomePage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   List<User> listUser = [];
   UserRepository userRepository = UserRepository();
 
@@ -37,7 +58,9 @@ class _MyAppState extends State<MyApp> {
           child: Scaffold(
               floatingActionButton: FloatingActionButton(
                 child: Icon(Icons.app_registration),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/add-user');
+                },
               ),
               body: ListView.separated(
                   itemBuilder: (context, index) {
@@ -48,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                           child: Row(children: [
                         CircleAvatar(
                           radius: 30,
-                          backgroundImage: NetworkImage(listUser[index].avatar),
+                          backgroundImage: NetworkImage(imgUrl),
                         ),
                         Container(
                           margin: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
