@@ -39,8 +39,22 @@ class UserRepository {
 
   Future putData(String id, String name, String email, String password) async {
     try {
-      final response = await http.put(Uri.parse(_baseUrl + '/User' + id),
+      final response = await http.put(Uri.parse(_baseUrl + '/User/' + id),
           body: {"name": name, "email": email, "password": password});
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future deleteData(String id) async {
+    try {
+      final response = await http.delete(Uri.parse(_baseUrl + '/User/' + id));
 
       if (response.statusCode == 200) {
         return true;

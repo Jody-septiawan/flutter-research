@@ -41,36 +41,58 @@ class _HomePageState extends State<HomePage> {
               ),
               body: ListView.separated(
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => Navigator.popAndPushNamed(
-                          context, '/update-user',
-                          arguments: [
-                            listUser[index].id,
-                            listUser[index].name,
-                            listUser[index].email,
-                            listUser[index].password
-                          ]),
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                        child: Row(children: [
-                          CircleAvatar(
-                            radius: 30,
-                            backgroundImage:
-                                NetworkImage(listUser[index].avatar),
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () => Navigator.popAndPushNamed(
+                              context, '/update-user',
+                              arguments: [
+                                listUser[index].id,
+                                listUser[index].name,
+                                listUser[index].email,
+                                listUser[index].password
+                              ]),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                            child: Row(children: [
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    NetworkImage(listUser[index].avatar),
+                              ),
+                              Container(
+                                margin:
+                                    EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(listUser[index].name,
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                      Text(listUser[index].email,
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                    ]),
+                              )
+                            ]),
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(listUser[index].name,
-                                      style: TextStyle(color: Colors.black)),
-                                  Text(listUser[index].email,
-                                      style: TextStyle(color: Colors.black)),
-                                ]),
-                          )
-                        ]),
-                      ),
+                        ),
+                        IconButton(
+                            onPressed: () async {
+                              bool response = await userRepository
+                                  .deleteData(listUser[index].id);
+
+                              if (response) {
+                                print("Delete data berhasil");
+                                getData();
+                              } else {
+                                print("Delete data gagal");
+                              }
+                            },
+                            icon: Icon(Icons.delete))
+                      ],
                     );
                   },
                   separatorBuilder: (context, index) {
