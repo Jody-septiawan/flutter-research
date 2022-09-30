@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:research_app/models/user.dart';
 
 class UserRepository {
-  final _baseUrl = "https://633641838aa85b7c5d2a0980.mockapi.io/";
+  final _baseUrl = "https://633641838aa85b7c5d2a0980.mockapi.io";
 
   Future getData() async {
     try {
@@ -26,9 +26,6 @@ class UserRepository {
     try {
       final response = await http.post(Uri.parse(_baseUrl + '/User'),
           body: {"name": name, "email": email, "password": password});
-
-      print("RESPONSE MockAPI");
-      print(response);
 
       if (response.statusCode == 201) {
         return true;
