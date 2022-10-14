@@ -36,8 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
             duration: Duration(milliseconds: 2000),
             width: widthContainer,
             height: heightContainer,
-            color: Colors.indigo,
-            curve: Curves.elasticInOut,
+            color: Colors.red,
+            curve: Curves.elasticOut,
+            alignment:
+                heightContainer >= 300 ? Alignment.topCenter : Alignment.center,
+            child: Text(
+              'Dumbways',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+            ),
           ),
         )),
       ))),
