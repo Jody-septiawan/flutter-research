@@ -11,9 +11,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  double heightContainer = 100.0;
-  double widthContainer = 100.0;
-  Random random = new Random();
+  Random randomBox = new Random();
+
+  double top = 0;
+  double left = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -21,31 +22,36 @@ class _HomeScreenState extends State<HomeScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           body: SafeArea(
-              child: Container(
-        child: Center(
-            child: GestureDetector(
-          onTap: () {
-            double randomNumberHeight = random.nextInt(700).toDouble();
-            double randomNumberWidth = random.nextInt(300).toDouble();
-            setState(() {
-              heightContainer = randomNumberHeight + 100.0;
-              widthContainer = randomNumberWidth + 100.0;
-            });
-          },
-          child: AnimatedContainer(
-            duration: Duration(milliseconds: 2000),
-            width: widthContainer,
-            height: heightContainer,
-            color: Colors.red,
-            curve: Curves.elasticOut,
-            alignment:
-                heightContainer >= 300 ? Alignment.topCenter : Alignment.center,
-            child: Text(
-              'Dumbways',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-            ),
-          ),
-        )),
+              child: Center(
+        child: SizedBox(
+            height: 300,
+            width: 300,
+            child: Stack(
+              children: [
+                Container(
+                  color: Colors.red[200],
+                ),
+                AnimatedPositioned(
+                  duration: Duration(seconds: 1),
+                  curve: Curves.elasticIn,
+                  top: top,
+                  left: left,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        top = randomBox.nextInt(200).toDouble();
+                        left = randomBox.nextInt(200).toDouble();
+                      });
+                    },
+                    child: Container(
+                      color: Colors.blue,
+                      height: 50,
+                      width: 50,
+                    ),
+                  ),
+                ),
+              ],
+            )),
       ))),
     );
   }
